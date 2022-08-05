@@ -1,0 +1,46 @@
+name: pic2cloud ci
+on:
+  push:
+    paths-ignore:
+      - "3d/**"
+      - "docs/**"
+      - "esphome/**"
+      - "firmware/**"
+      - "schematic/**"
+      - "examples/gdrive/**"
+      - "examples/netdisk/**"
+  pull_request:
+    paths-ignore:
+      - "3d/**"
+      - "docs/**"
+      - "esphome/**"
+      - "firmware/**"
+      - "schematic/**"
+      - "examples/gdrive/**"
+      - "examples/netdisk/**"
+
+jobs:
+  pic2cloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Cache PlatformIO
+        uses: actions/cache@v2
+        with:
+          path: ~/.platformio
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+      - name: Install PlatformIO
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade platformio
+      - name: Run PlatformIO
+        run: cd examples/pic2cloud && pio run
