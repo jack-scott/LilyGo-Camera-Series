@@ -1,5 +1,13 @@
 <h1 align = "center">🌟Camera Project🌟</h1>
 
+[![gdrive](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/gdrive.yml/badge.svg)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/gdrive.yml/build.yml)
+[![netdisk](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/netdisk.yml/badge.svg)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/netdisk.yml/build.yml)
+[![pic2cloud](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/pic2cloud.yml/badge.svg)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/actions/workflows/pic2cloud.yml/build.yml)
+
+[![issues](https://img.shields.io/github/issues/Xinyuan-LilyGO/LilyGo-Camera-Series)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/issues)
+[![frok](https://img.shields.io/github/forks/Xinyuan-LilyGO/LilyGo-Camera-Series)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/graphs/contributors)
+[![star](https://img.shields.io/github/stars/Xinyuan-LilyGO/LilyGo-Camera-Series)](https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/stargazers)
+
 ![Camera Series](./docs/_static/readme/camera_series.jpg)
 
 ## 📷 Product
