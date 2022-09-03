@@ -374,6 +374,8 @@ bool setupCamera()
     config.pin_reset = RESET_GPIO_NUM;
     config.xclk_freq_hz = 20000000;
     config.pixel_format = PIXFORMAT_JPEG;
+    config.fb_location = CAMERA_FB_IN_PSRAM;
+    config.grab_mode = CAMERA_GRAB_LATEST;
     //init with high specs to pre-allocate larger buffers
     if (psramFound()) {
         config.frame_size = FRAMESIZE_UXGA;
@@ -383,7 +385,8 @@ bool setupCamera()
         config.frame_size = FRAMESIZE_SVGA;
         config.jpeg_quality = 12;
         config.fb_count = 1;
-    }
+        config.fb_location = CAMERA_FB_IN_DRAM;
+   }
 #endif
 
 #if defined(ESPRESSIF_ESP_EYE) || defined(T_Camera_V162_VERSION) || defined(T_Camera_MINI_VERSION)
