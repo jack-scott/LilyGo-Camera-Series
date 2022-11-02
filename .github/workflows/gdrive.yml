@@ -1,23 +1,12 @@
 name: gdrive ci
 on:
   push:
-    paths-ignore:
-      - "3d/**"
-      - "docs/**"
-      - "esphome/**"
-      - "firmware/**"
-      - "schematic/**"
-      - "examples/netdisk/**"
-      - "examples/pic2cloud/**"
+    paths:
+      - "examples/gdrive/**"
+
   pull_request:
     paths-ignore:
-      - "3d/**"
-      - "docs/**"
-      - "esphome/**"
-      - "firmware/**"
-      - "schematic/**"
-      - "examples/netdisk/**"
-      - "examples/pic2cloud/**"
+      - "examples/gdrive/**"
 
 jobs:
   gdrive:

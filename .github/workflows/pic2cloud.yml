@@ -2,22 +2,10 @@ name: pic2cloud ci
 on:
   push:
     paths-ignore:
-      - "3d/**"
-      - "docs/**"
-      - "esphome/**"
-      - "firmware/**"
-      - "schematic/**"
-      - "examples/gdrive/**"
-      - "examples/netdisk/**"
+      - "examples/pic2cloud/**"
   pull_request:
     paths-ignore:
-      - "3d/**"
-      - "docs/**"
-      - "esphome/**"
-      - "firmware/**"
-      - "schematic/**"
-      - "examples/gdrive/**"
-      - "examples/netdisk/**"
+      - "examples/pic2cloud/**"
 
 jobs:
   pic2cloud:

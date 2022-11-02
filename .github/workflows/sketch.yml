@@ -1,15 +1,15 @@
-name: netdisk ci
+name: sketch ci
 on:
   push:
     paths:
-      - "examples/netdisk/**"
+      - "examples/sketch/**"
 
   pull_request:
     paths:
-      - "examples/netdisk/**"
+      - "examples/sketch/**"
 
 jobs:
-  netdisk:
+  sketch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,4 +32,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade platformio
       - name: Run PlatformIO
-        run: cd examples/netdisk && pio run
+        run: cd examples/sketch && pio run
