@@ -5,7 +5,7 @@ on:
       - "examples/gdrive/**"
 
   pull_request:
-    paths-ignore:
+    paths:
       - "examples/gdrive/**"
 
 jobs:

@@ -1,10 +1,10 @@
 name: pic2cloud ci
 on:
   push:
-    paths-ignore:
+    paths:
       - "examples/pic2cloud/**"
   pull_request:
-    paths-ignore:
+    paths:
       - "examples/pic2cloud/**"
 
 jobs:
