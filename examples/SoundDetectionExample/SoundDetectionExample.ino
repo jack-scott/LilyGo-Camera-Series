@@ -19,6 +19,10 @@
 #define IIS_DIN_PIN                 (33)
 #define IIS_SCLK_PIN                (26)
 
+// ESP32S3 T-SIM IIS Pin
+// #define IIS_WS_PIN                  (42)
+// #define IIS_SCLK_PIN                (41)
+// #define IIS_DIN_PIN                 (2)
 
 
 #define VAD_SAMPLE_RATE_HZ              16000
