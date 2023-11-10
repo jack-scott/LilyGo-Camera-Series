@@ -42,7 +42,7 @@
 * Note2 : SD and TFT screen share bus
 
 ### Programming Notes:
-1. You need to uncomment **T_Camera_PLUS_VERSION** in **sketch.ino**
+1. You need to uncomment **CAMERA_MODEL_TTGO_T_CAMERA_PLUS** in **sketch.ino**
 2. The following libraries need to be installed to compile
     - [Bodmer/TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) 
 3. After the installation is complete, enter the **TFT_eSPI** directory, edit **User_Setup_Select.h**, comment the `#include <User_Setup.h>`, and then uuncomment `include <User_Setups/Setup44_TTGO_CameraPlus.h>`

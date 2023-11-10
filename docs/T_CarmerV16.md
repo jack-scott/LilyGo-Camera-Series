@@ -34,7 +34,7 @@
 * Note: **PIR** Pin not **RTC IO**, unable to wake from deep sleep
 
 ### Programming Notes:
-1. When using **T-Camear V16** ,uncomment **T_Camera_V16_VERSION** in **sketch.ino**
+1. When using **T-Camear V16** ,uncomment **CAMERA_MODEL_TTGO_T_CAMERA_V16** in **sketch.ino**
 1. The following libraries need to be installed to compile
     - [mathertel/OneButton](https://github.com/mathertel/OneButton) 
     - [ThingPulse/esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)

@@ -30,7 +30,7 @@
 
 
 ### Programming Notes:
-1. When using **T-Joranl** ,uncomment **T_Camera_JORNAL_VERSION** in **sketch.ino**
+1. When using **T-Joranl** ,uncomment **CAMERA_MODEL_TTGO_T_JOURNAL** in **sketch.ino**
 1. The following libraries need to be installed to compile
     - [mathertel/OneButton](https://github.com/mathertel/OneButton) 
     - [ThingPulse/esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)

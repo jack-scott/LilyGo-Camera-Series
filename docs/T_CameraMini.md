@@ -27,5 +27,5 @@
 
 
 ### Programming Notes:
-- When using **T-Camera Mini**, just uncomment **T_Camera_MINI_VERSION** in **sketch.ino**
+- When using **T-Camera Mini**, just uncomment **CAMERA_MODEL_TTGO_T_CAMERA_MINI** in **sketch.ino**
 - If you use your own code, you need to turn off the power supply USB current limit, otherwise the power protection action may be caused by excessive current.

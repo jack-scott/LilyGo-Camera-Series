@@ -29,7 +29,7 @@
 | OLED Height |      64      |
 
 ### Programming Notes:
-1. When using **T-Camear V05** ,uncomment **T_Camera_V05_VERSION** in **sketch.ino**
+1. When using **T-Camear V05** ,uncomment **CAMERA_MODEL_TTGO_T_CAMERA_V05** in **sketch.ino**
 1. The following libraries need to be installed to compile
     - [mathertel/OneButton](https://github.com/mathertel/OneButton) 
     - [ThingPulse/esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)
