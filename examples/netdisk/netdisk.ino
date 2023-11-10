@@ -47,7 +47,7 @@ const char *password = "your network password";
 
 /**
  * Enter your APP credentials
- * 
+ *
  * Refer to (documentation)[https://pan.baidu.com/union/doc/fl0hhnulu],
  * create an application, obtain the following information and fill in it.
  */
@@ -80,8 +80,8 @@ void setup()
     config.pin_pclk = PCLK_GPIO_NUM;
     config.pin_vsync = VSYNC_GPIO_NUM;
     config.pin_href = HREF_GPIO_NUM;
-    config.pin_sscb_sda = SIOD_GPIO_NUM;
-    config.pin_sscb_scl = SIOC_GPIO_NUM;
+    config.pin_sccb_sda = SIOD_GPIO_NUM;
+    config.pin_sccb_scl = SIOC_GPIO_NUM;
     config.pin_pwdn = PWDN_GPIO_NUM;
     config.pin_reset = RESET_GPIO_NUM;
     config.xclk_freq_hz = 20000000;
@@ -95,23 +95,17 @@ void setup()
 
     // if PSRAM IC present, init with UXGA resolution and higher JPEG quality
     // for larger pre-allocated frame buffer.
-    if (config.pixel_format == PIXFORMAT_JPEG)
-    {
-        if (psramFound())
-        {
+    if (config.pixel_format == PIXFORMAT_JPEG) {
+        if (psramFound()) {
             config.jpeg_quality = 10;
             config.fb_count = 2;
             config.grab_mode = CAMERA_GRAB_LATEST;
-        }
-        else
-        {
+        } else {
             // Limit the frame size when PSRAM is not available
             config.frame_size = FRAMESIZE_SVGA;
             config.fb_location = CAMERA_FB_IN_DRAM;
         }
-    }
-    else
-    {
+    } else {
         // Best option for face detection/recognition
         config.frame_size = FRAMESIZE_240X240;
 #if CONFIG_IDF_TARGET_ESP32S3
@@ -126,23 +120,20 @@ void setup()
 
     // camera init
     esp_err_t err = esp_camera_init(&config);
-    if (err != ESP_OK)
-    {
+    if (err != ESP_OK) {
         Serial.printf("Camera init failed with error 0x%x", err);
         return;
     }
 
     sensor_t *s = esp_camera_sensor_get();
     // initial sensors are flipped vertically and colors are a bit saturated
-    if (s->id.PID == OV3660_PID)
-    {
+    if (s->id.PID == OV3660_PID) {
         s->set_vflip(s, 1);       // flip it back
         s->set_brightness(s, 1);  // up the brightness just a bit
         s->set_saturation(s, -2); // lower the saturation
     }
     // drop down frame size for higher initial frame rate
-    if (config.pixel_format == PIXFORMAT_JPEG)
-    {
+    if (config.pixel_format == PIXFORMAT_JPEG) {
         s->set_framesize(s, FRAMESIZE_UXGA);
     }
 
@@ -158,8 +149,7 @@ void setup()
     WiFi.begin(ssid, password);
     WiFi.setSleep(false);
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
     }
@@ -171,9 +161,9 @@ void setup()
 
     xpan.oauthInit(appKey, secretKey, scope, appName);
     xpan.authorize([](NetDisk::getDeviceCodeRsp rsp) {
-            Serial.println("user_code: " + rsp.user_code);
-            qrcode_display(rsp.verification_url.c_str());
-        }, 300);
+        Serial.println("user_code: " + rsp.user_code);
+        qrcode_display(rsp.verification_url.c_str());
+    }, 300);
 
 }
 

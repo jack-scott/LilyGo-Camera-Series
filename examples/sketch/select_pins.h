@@ -11,7 +11,7 @@ Compatible with all TTGO camera products, written by LewisHe
 03/28/2020
 */
 
-#if defined(T_Camera_V16_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_V16)
 #define PWDN_GPIO_NUM       -1
 #define RESET_GPIO_NUM      -1
 #define XCLK_GPIO_NUM       4
@@ -43,7 +43,7 @@ Compatible with all TTGO camera products, written by LewisHe
 #define IIS_WS              32
 #define IIS_DOUT            33
 
-#elif defined(T_Camera_V05_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_CAMERA_V05)
 #define PWDN_GPIO_NUM       26
 #define RESET_GPIO_NUM      -1
 #define XCLK_GPIO_NUM       32
@@ -72,7 +72,7 @@ Compatible with all TTGO camera products, written by LewisHe
 #define SSD130_MODLE_TYPE   0       // 0 : GEOMETRY_128_64  // 1: GEOMETRY_128_32
 
 
-#elif defined(T_Camera_JORNAL_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_JOURNAL)
 
 #define PWDN_GPIO_NUM     -1
 #define RESET_GPIO_NUM    15
@@ -100,7 +100,7 @@ Compatible with all TTGO camera products, written by LewisHe
 
 #define SSD130_MODLE_TYPE   1   // 0 : GEOMETRY_128_64  // 1: GEOMETRY_128_32
 
-#elif defined(T_Camera_PLUS_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_CAMERA_PLUS)
 #define PWDN_GPIO_NUM       -1
 #define RESET_GPIO_NUM      -1
 #define XCLK_GPIO_NUM       4
@@ -138,7 +138,7 @@ Compatible with all TTGO camera products, written by LewisHe
 #define ENABLE_IP5306
 #define ENABLE_TFT
 
-#elif defined(T_Camera_V162_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_CAMERA_V162)
 
 #define PWDN_GPIO_NUM       -1
 #define RESET_GPIO_NUM      -1
@@ -173,7 +173,7 @@ Compatible with all TTGO camera products, written by LewisHe
 
 #define ENABLE_IP5306
 
-#elif defined(T_Camera_MINI_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_CAMERA_MINI)
 
 #define PWDN_GPIO_NUM    -1
 #define RESET_GPIO_NUM   -1
@@ -203,7 +203,7 @@ Compatible with all TTGO camera products, written by LewisHe
 #define POWER_CONTROL_PIN     26
 
 #define ENABLE_AXP192
-#elif defined(T_Camera_V17_VERSION)
+#elif defined(CAMERA_MODEL_TTGO_T_CAMERA_V17)
 
 #define PWDN_GPIO_NUM       -1
 #define RESET_GPIO_NUM      -1

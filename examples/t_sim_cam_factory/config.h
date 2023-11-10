@@ -1,8 +1,8 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define WIFI_SSID        "LilyGo-AABB"
-#define WIFI_PASSWORD    "xinyuandianzi"
+#define WIFI_SSID        "WiFi SSID"
+#define WIFI_PASSWORD    "WIFI PASSWORD"
 
 #define WIFI_AP_SSID     "T-SIMCAM-"
 #define WIFI_AP_PASSWORD "12345678"

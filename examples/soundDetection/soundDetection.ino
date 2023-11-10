@@ -1,5 +1,5 @@
 /**
- * @file      main.cpp
+ * @file      soundDetection.ino
  * @author    Lewis He (lewishe@outlook.com)
  * @license   MIT
  * @copyright Copyright (c) 2022  Shenzhen Xin Yuan Electronic Technology Co., Ltd

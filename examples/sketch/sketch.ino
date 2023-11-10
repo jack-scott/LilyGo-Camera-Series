@@ -18,13 +18,13 @@ Compatible with all TTGO camera products, written by LewisHe
  *  Board select
  **************************************/
 /* Select your board here, see the board list in the README for details*/
-// #define T_Camera_JORNAL_VERSION
-// #define T_Camera_MINI_VERSION
-// #define T_Camera_PLUS_VERSION
-// #define T_Camera_V05_VERSION
-// #define T_Camera_V16_VERSION
-// #define T_Camera_V162_VERSION
-// #define T_Camera_V17_VERSION
+// #define CAMERA_MODEL_TTGO_T_JOURNAL
+// #define CAMERA_MODEL_TTGO_T_CAMERA_MINI
+// #define CAMERA_MODEL_TTGO_T_CAMERA_PLUS
+// #define CAMERA_MODEL_TTGO_T_CAMERA_V05
+// #define CAMERA_MODEL_TTGO_T_CAMERA_V16
+// #define CAMERA_MODEL_TTGO_T_CAMERA_V162
+// #define CAMERA_MODEL_TTGO_T_CAMERA_V17
 // #define ESPRESSIF_ESP_EYE
 // #define CAMERA_MODEL_TTGO_T_CAM_SIM
 
@@ -160,7 +160,7 @@ bool setupDisplay()
 {
 
 #if defined(ENABLE_TFT)
-#if defined(T_Camera_PLUS_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_PLUS)
     tft.init();
     tft.setRotation(0);
     tft.fillScreen(TFT_BLACK);
@@ -174,7 +174,7 @@ bool setupDisplay()
 
 #elif defined(SSD130_MODLE_TYPE)
     static FrameCallback frames[] = {
-        [](OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y)
+        [](OLEDDisplay * display, OLEDDisplayUiState * state, int16_t x, int16_t y)
         {
             display->setTextAlignment(TEXT_ALIGN_CENTER);
             display->setFont(ArialMT_Plain_10);
@@ -187,13 +187,12 @@ bool setupDisplay()
 #endif
 
 #if defined(AS312_PIN)
-            if (digitalRead(AS312_PIN))
-            {
+            if (digitalRead(AS312_PIN)) {
                 display->drawString(64 + x, 40 + y, "AS312 Trigger");
             }
 #endif
         },
-        [](OLEDDisplay *display, OLEDDisplayUiState *state, int16_t x, int16_t y)
+        [](OLEDDisplay * display, OLEDDisplayUiState * state, int16_t x, int16_t y)
         {
 #if defined(ENABLE_BME280)
             display->setFont(ArialMT_Plain_16);
@@ -211,16 +210,17 @@ bool setupDisplay()
             display->drawString(64 + x, 0 + y, "Camera Ready! Use");
             display->drawString(64 + x, 10 + y, "http://" + ipAddress);
             display->drawString(64 + x, 16 + y, "to connect");
-        // } else {
+            // } else {
 #else
             display->drawString(64 + x, 5 + y, "Camera Ready! Use");
             display->drawString(64 + x, 25 + y, "http://" + ipAddress);
             display->drawString(64 + x, 45 + y, "to connect");
-        // }
+            // }
 #endif /*SSD130_MODLE_TYPE*/
 
 #endif /*ENABLE_BME280*/
-        }};
+        }
+    };
 
     if (!deviceProbe(SSD1306_ADDRESS))
         return false;
@@ -245,8 +245,7 @@ bool setupDisplay()
 void loopDisplay()
 {
 #if defined(SSD130_MODLE_TYPE)
-    if (ui.update())
-    {
+    if (ui.update()) {
 #endif /*SSD130_MODLE_TYPE*/
 
 #if defined(BUTTON_1)
@@ -257,7 +256,7 @@ void loopDisplay()
     }
 #elif defined(ENABLE_TFT)
 
-    // ***
+        // ***
 
 #endif /*SSD130_MODLE_TYPE & ENABLE_TFT*/
 }
@@ -306,7 +305,7 @@ bool setupPower()
     Wire.write(val & 0b10100010);
     Wire.endTransmission();
 #endif
-#if defined(T_Camera_MINI_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_MINI)
     //  There is a pin in the Mini to control the camera power
     pinMode(POWER_CONTROL_PIN, OUTPUT);
     digitalWrite(POWER_CONTROL_PIN, HIGH);
@@ -328,15 +327,12 @@ bool setupSDCard()
     // SPI.begin(TFT_SCLK_PIN, TFT_MISO_PIN, TFT_MOSI_PIN);
 
 #if defined(SDCARD_CS_PIN)
-    if (!SD.begin(SDCARD_CS_PIN))
-    {
+    if (!SD.begin(SDCARD_CS_PIN)) {
         tft.setTextColor(TFT_RED);
         tft.drawString("SDCard begin failed", tft.width() / 2, tft.height() / 2 - 20);
         tft.setTextColor(TFT_WHITE);
         return false;
-    }
-    else
-    {
+    } else {
         String cardInfo = String(((uint32_t)SD.cardSize() / 1024 / 1024));
         tft.setTextColor(TFT_GREEN);
         tft.drawString("SDcardSize=[" + cardInfo + "]MB", tft.width() / 2, tft.height() / 2 + 92);
@@ -369,8 +365,8 @@ bool setupCamera()
     config.pin_pclk = PCLK_GPIO_NUM;
     config.pin_vsync = VSYNC_GPIO_NUM;
     config.pin_href = HREF_GPIO_NUM;
-    config.pin_sscb_sda = SIOD_GPIO_NUM;
-    config.pin_sscb_scl = SIOC_GPIO_NUM;
+    config.pin_sccb_sda = SIOD_GPIO_NUM;
+    config.pin_sccb_scl = SIOC_GPIO_NUM;
     config.pin_pwdn = PWDN_GPIO_NUM;
     config.pin_reset = RESET_GPIO_NUM;
     config.xclk_freq_hz = 20000000;
@@ -378,14 +374,11 @@ bool setupCamera()
     config.fb_location = CAMERA_FB_IN_PSRAM;
     config.grab_mode = CAMERA_GRAB_LATEST;
     // init with high specs to pre-allocate larger buffers
-    if (psramFound())
-    {
+    if (psramFound()) {
         config.frame_size = FRAMESIZE_UXGA;
         config.jpeg_quality = 10;
         config.fb_count = 2;
-    }
-    else
-    {
+    } else {
         config.frame_size = FRAMESIZE_SVGA;
         config.jpeg_quality = 12;
         config.fb_count = 1;
@@ -393,7 +386,7 @@ bool setupCamera()
     }
 #endif
 
-#if defined(ESPRESSIF_ESP_EYE) || defined(T_Camera_V162_VERSION) || defined(T_Camera_MINI_VERSION)
+#if defined(ESPRESSIF_ESP_EYE) || defined(CAMERA_MODEL_TTGO_T_CAMERA_V162) || defined(CAMERA_MODEL_TTGO_T_CAMERA_MINI)
     /* IO13, IO14 is designed for JTAG by default,
      * to use it as generalized input,
      * firstly declair it as pullup input */
@@ -403,16 +396,14 @@ bool setupCamera()
 
     // camera init
     esp_err_t err = esp_camera_init(&config);
-    if (err != ESP_OK)
-    {
+    if (err != ESP_OK) {
         Serial.printf("Camera init failed with error 0x%x\n", err);
         return false;
     }
 
     sensor_t *s = esp_camera_sensor_get();
     // initial sensors are flipped vertically and colors are a bit saturated
-    if (s->id.PID == OV3660_PID)
-    {
+    if (s->id.PID == OV3660_PID) {
         s->set_vflip(s, 1);       // flip it back
         s->set_brightness(s, 1);  // up the blightness just a bit
         s->set_saturation(s, -2); // lower the saturation
@@ -420,7 +411,7 @@ bool setupCamera()
     // drop down frame size for higher initial frame rate
     s->set_framesize(s, FRAMESIZE_QVGA);
 
-#if defined(T_Camera_V162_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_V162)
     s->set_vflip(s, 1);
     s->set_hmirror(s, 1);
 #endif
@@ -437,8 +428,7 @@ void setupNetwork()
     ipAddress = WiFi.softAPIP().toString();
 #else
     WiFi.begin(WIFI_SSID, WIFI_PASSWD);
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
     }
@@ -448,7 +438,7 @@ void setupNetwork()
     macAddress += WiFi.macAddress().substring(0, 5);
 #endif
 #if defined(ENABLE_TFT)
-#if defined(T_Camera_PLUS_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_PLUS)
     tft.drawString("ipAddress:", tft.width() / 2, tft.height() / 2 + 50);
     tft.drawString(ipAddress, tft.width() / 2, tft.height() / 2 + 72);
 #endif
@@ -458,27 +448,22 @@ void setupNetwork()
 void setupButton()
 {
 #if defined(BUTTON_1)
-    button.attachClick([]()
-                       {
-                           static bool en = false;
-                           sensor_t *s = esp_camera_sensor_get();
-                           en = en ? 0 : 1;
-                           s->set_vflip(s, en);
+    button.attachClick([]() {
+        static bool en = false;
+        sensor_t *s = esp_camera_sensor_get();
+        en = en ? 0 : 1;
+        s->set_vflip(s, en);
 #if defined(SSD130_MODLE_TYPE)
-                           if (en)
-                           {
-                               oled.resetOrientation();
-                           }
-                           else
-                           {
-                               oled.flipScreenVertically();
-                           }
+        if (en) {
+            oled.resetOrientation();
+        } else {
+            oled.flipScreenVertically();
+        }
 #endif
-                           // delay(200);
-                       });
+        // delay(200);
+    });
 
-    button.attachDoubleClick([]()
-                             {
+    button.attachDoubleClick([]() {
         if (PWDN_GPIO_NUM > 0) {
             pinMode(PWDN_GPIO_NUM, PULLUP);
             digitalWrite(PWDN_GPIO_NUM, HIGH);
@@ -510,7 +495,7 @@ void setupButton()
         esp_sleep_enable_ext1_wakeup(((uint64_t)(((uint64_t)1) << AS312_PIN)), ESP_EXT1_WAKEUP_ANY_HIGH);
 #elif defined(BUTTON_1)
         // esp_sleep_enable_ext0_wakeup((gpio_num_t )BUTTON_1, LOW);
-#if defined(T_Camera_MINI_VERSION)
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_MINI)
         esp_sleep_enable_ext1_wakeup(((uint64_t)(((uint64_t)1) << BUTTON_1)), ESP_EXT1_WAKEUP_ANY_HIGH);
 #else
         esp_sleep_enable_ext1_wakeup(((uint64_t)(((uint64_t)1) << BUTTON_1)), ESP_EXT1_WAKEUP_ALL_LOW);
@@ -518,8 +503,9 @@ void setupButton()
 #else
         esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
 #endif
-        esp_deep_sleep_start(); });
-#if defined(T_Camera_MINI_VERSION)
+        esp_deep_sleep_start();
+    });
+#if defined(CAMERA_MODEL_TTGO_T_CAMERA_MINI)
     button.setClickTicks(200);
     button.setDebounceTicks(0);
 #endif
@@ -558,8 +544,7 @@ void setup()
     status = setupCamera();
     Serial.print("setupCamera status ");
     Serial.println(status);
-    if (!status)
-    {
+    if (!status) {
         delay(10000);
         esp_restart();
     }
