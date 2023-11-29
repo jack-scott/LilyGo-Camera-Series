@@ -20,7 +20,7 @@ Compatible with all TTGO camera products, written by LewisHe
 /* Select your board here, see the board list in the README for details*/
 // #define CAMERA_MODEL_TTGO_T_JOURNAL
 // #define CAMERA_MODEL_TTGO_T_CAMERA_MINI
-// #define CAMERA_MODEL_TTGO_T_CAMERA_PLUS
+#define CAMERA_MODEL_TTGO_T_CAMERA_PLUS
 // #define CAMERA_MODEL_TTGO_T_CAMERA_V05
 // #define CAMERA_MODEL_TTGO_T_CAMERA_V16
 // #define CAMERA_MODEL_TTGO_T_CAMERA_V162
@@ -31,7 +31,7 @@ Compatible with all TTGO camera products, written by LewisHe
 /***************************************
  *  Function
  **************************************/
-// #define SOFTAP_MODE       //The comment will be connected to the specified ssid
+#define SOFTAP_MODE       //The comment will be connected to the specified ssid
 
 // When there is BME280, set the reading time here
 #define DEFAULT_MEASUR_MILLIS 3000 /* Get sensor time by default (ms)*/
